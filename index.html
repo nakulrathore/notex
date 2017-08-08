@@ -1,12 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-   pwa test
-    </body>
+
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="NoteX">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="icons/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+	<link rel="manifest" href="manifest.json">
+	<title>NoteX</title>
+	<link rel="shortcut icon" href="icons/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script>
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', function () {
+				navigator.serviceWorker.register('sw.js').then(function (registration) {
+						// Registration was successful
+						console.log('ServiceWorker registration successful with scope: ', registration.scope);
+					},
+					function (err) {
+						// registration failed :( 
+						console.log('ServiceWorker registration failed: ', err);
+					});
+			});
+		}
+	</script>
+
+	
+
+
+
+
+</head>
+
+
+<body onload="myFunctionx()">
+	<span id="state"> </span>
+	<span id="save">Download</span>
+	<div id="name">❒</div>
+	<div id="other">NoteX</div>
+	<textarea id="idd" contenteditable="true"  oninput="myFunction()" onfocus="this.value = this.value;"
+	placeholder="Type Here..." autofocus></textarea>
+
+
+
+	<script>
+		function myFunction() {
+			var x = document.getElementById("idd").value;
+			localStorage.idd = x;
+			document.getElementById("state").innerHTML = "<notif>Saving..</notif>";
+			if(x != ''){
+				document.getElementById("save").style = "display:block";
+			}else{
+				document.getElementById("save").style = "display:none;";
+
+			}
+			function_two();
+		}
+
+		function myFunctionx() {
+
+			if (localStorage.idd) {
+				document.getElementById("idd").value = localStorage.idd;
+				document.getElementById("save").style = "display:block";
+
+			} else {
+				document.getElementById("idd").value = "";
+			}
+
+
+		}
+
+		function function_two() {
+
+			setTimeout(function () {
+				document.getElementById("state").innerHTML = "<notif>Saved</notif>";
+			}, 800);
+
+		}
+
+
+		function saveTextAsFile() {
+			var textToWrite = document.getElementById('idd').value;
+			textToWrite = textToWrite.replace(/\n/g, "\r\n");
+			var textFileAsBlob = new Blob([ textToWrite ], { type: 'text/plain' });
+			var fileNameToSaveAs = "notex.txt";
+
+			var downloadLink = document.createElement("a");
+			downloadLink.download = fileNameToSaveAs;
+			downloadLink.innerHTML = "Download File";
+			if (window.URL != null) {
+    // Chrome allows the link to be clicked without actually adding it to the DOM.
+    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+} else {
+    // Firefox requires the link to be added to the DOM before it can be clicked.
+    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+    downloadLink.onclick = destroyClickedElement;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+}
+
+downloadLink.click();
+}
+
+var button = document.getElementById('save');
+button.addEventListener('click', saveTextAsFile);
+
+function destroyClickedElement(event) {
+  // remove the link from the DOM
+  document.body.removeChild(event.target);
+}
+
+
+
+</script>
+</body>
+
 </html>
