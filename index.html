@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html lang="en">
 
 
 <head>
@@ -58,7 +58,7 @@
 	<span id="save">Download</span>
 	<div id="name">❒</div>
 	<div id="other">NoteX</div>
-	<textarea id="idd" contenteditable="true"  oninput="myFunction()" onfocus="this.value = this.value;"
+	<textarea name="notex" id="idd" contenteditable="true"  oninput="myFunction()" onfocus="this.value = this.value;"
 	placeholder="Type Here..." autofocus></textarea>
 
 
@@ -67,10 +67,10 @@
 
 		function autosize(){
 			el = document.getElementById("idd");
-			
+
 			el.style.cssText = 'height:auto; padding:0';
 			el.style.cssText = 'height:' + el.scrollHeight + 'px';
-			
+
 		}
 
 
