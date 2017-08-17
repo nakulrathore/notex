@@ -64,7 +64,18 @@
 
 
 	<script>
+
+		function autosize(){
+			el = document.getElementById("idd");
+			
+			el.style.cssText = 'height:auto; padding:0';
+			el.style.cssText = 'height:' + el.scrollHeight + 'px';
+			
+		}
+
+
 		function myFunction() {
+			autosize()
 			var x = document.getElementById("idd").value;
 			localStorage.idd = x;
 			document.getElementById("state").innerHTML = "<notif>Saving..</notif>";
@@ -130,7 +141,13 @@ function destroyClickedElement(event) {
   document.body.removeChild(event.target);
 }
 
+document.addEventListener("keydown", function(e) {
+	if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey))      {
+		e.preventDefault();
+		saveTextAsFile();
 
+	}
+}, false);
 
 </script>
 </body>

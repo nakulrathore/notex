@@ -20,6 +20,7 @@
 	border: none;
 	font-size: inherit;
 	display: block;
+	resize: none;
 }
 
 #name {
