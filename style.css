@@ -21,6 +21,11 @@
 	font-size: inherit;
 	display: block;
 	resize: none;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 21px;
+    line-height: 1.58;
+    letter-spacing: -.003em;
 }
 
 #name {

@@ -1,7 +1,7 @@
 {
-  "name": "notex",
+  "name": "noteX",
     "short_name": "noteX",
-    "description": "noteX",
+    "description": "online note taking app",
     "lang": "en-GB",
     "start_url": "/",
     "display": "standalone",
