@@ -53,7 +53,7 @@
 	font-family: droid;
 	font-size: 15px;
 	font-weight: 500;
-	top: 20px;
+	bottom: 30px;
 	color: #34495E;
 	position: fixed;
 }
@@ -61,7 +61,7 @@
 	font-family: droid;
 	font-size: 15px;
 	font-weight: 500;
-	top: 20px;
+	bottom: 30px;
 	right: 10px;
 	color: #34495E;
 	position: fixed;
