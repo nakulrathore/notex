@@ -31,18 +31,18 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 
 	<script>
-		if ('serviceWorker' in navigator) {
-			window.addEventListener('load', function () {
-				navigator.serviceWorker.register('sw.js').then(function (registration) {
-						// Registration was successful
-						console.log('ServiceWorker registration successful with scope: ', registration.scope);
-					},
-					function (err) {
-						// registration failed :( 
-						console.log('ServiceWorker registration failed: ', err);
-					});
-			});
-		}
+		// if ('serviceWorker' in navigator) {
+		// 	window.addEventListener('load', function () {
+		// 		navigator.serviceWorker.register('sw.js').then(function (registration) {
+		// 				// Registration was successful
+		// 				console.log('ServiceWorker registration successful with scope: ', registration.scope);
+		// 			},
+		// 			function (err) {
+		// 				// registration failed :( 
+		// 				console.log('ServiceWorker registration failed: ', err);
+		// 			});
+		// 	});
+		// }
 	</script>
 
 	
@@ -54,10 +54,10 @@
 
 
 <body onload="myFunctionx()">
-	<span id="state"> </span>
-	<span id="save">Download</span>
-	<div id="name">❒</div>
-	<div id="other">NoteX</div>
+	<!-- <span id="state"> </span> -->
+	<!-- <span id="save">Download</span> -->
+	<!-- <div id="name">❒</div>
+	<div id="other">NoteX</div> -->
 	<textarea name="notex" id="idd" contenteditable="true"  oninput="myFunction()" onfocus="this.value = this.value;"
 	placeholder="Type Here..." autofocus></textarea>
 
@@ -75,7 +75,7 @@
 
 
 		function myFunction() {
-			autosize()
+			// autosize()
 			var x = document.getElementById("idd").value;
 			localStorage.idd = x;
 			document.getElementById("state").innerHTML = "<notif>Saving..</notif>";
@@ -147,6 +147,31 @@ document.addEventListener("keydown", function(e) {
 		saveTextAsFile();
 
 	}
+}, false);
+
+var autoExpand = function (field) {
+
+// Reset field height
+field.style.height = 'inherit';
+
+// Get the computed styles for the element
+var computed = window.getComputedStyle(field);
+
+// Calculate the height
+var height = parseInt(computed.getPropertyValue('border-top-width'), 10)
+			 + parseInt(computed.getPropertyValue('padding-top'), 10)
+			 + field.scrollHeight
+			 + parseInt(computed.getPropertyValue('padding-bottom'), 10)
+			 + parseInt(computed.getPropertyValue('border-bottom-width'), 10);
+
+field.style.height = height + 'px';
+
+};
+
+document.addEventListener('input', function (event) {
+	console.log('dd');
+	if (event.target.tagName.toLowerCase() !== 'textarea') return;
+	autoExpand(event.target);
 }, false);
 
 </script>
